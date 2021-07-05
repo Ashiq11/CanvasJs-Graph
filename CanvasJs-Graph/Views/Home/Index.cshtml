@@ -42,28 +42,26 @@
                         valueFormatString: "###0"
                     },
 
-                    buttons: [{
-                        label: "1000",
-                        range: 1000,
-                        rangeType: "number"
-                    }, {
-                        label: "2000",
-                        range: 2000,
-                        rangeType: "number"
-                    }, {
-                        label: "5000",
-                        range: 5000,
-                        rangeType: "number"
-                    }, {
-                        label: "All",
-                        rangeType: "all"
-                    }]
+                    buttons: buttonArr
+
                 }
             });
 
             stockChart.render();
         }
-
+        var buttonArr=[];
+        var labelVal = 1000;
+        
+        for (var i = 0; i < 6; i += 1) {
+            var buttonObj = {
+                label: labelVal.toString(),
+                range: labelVal,
+                rangeType: "number"
+            }
+            buttonArr.push(buttonObj);
+            labelVal += 1000;
+        }
+        buttonArr.push({ label: "All", rangeType: "all" });
         var limit = 10000;    //increase number of dataPoints by increasing this
         var y = 1000;
         var data = []; var dataSeries = { type: "spline" };
@@ -77,6 +75,29 @@
     </script>
 </head>
 <body>
+    <div>
+        <span>Timespane: </span>
+        <input type="radio" id="p5m" name="p5m" value="p5m"
+               checked>
+        <label for="huey">Past 5 Mintues</label>
+        <input type="radio" id="p15m" name="p15m" value="p15m">
+        <label for="huey">Past 15 Mintues</label>
+        <input type="radio" id="p30m" name="p30m" value="p30m">
+        <label for="huey">Past 30 Mintues</label>
+        <input type="radio" id="p1h" name="p1h" value="p1h">
+        <label for="huey">Past 1 Hour</label>
+        <input type="radio" id="p4h" name="p4h" value="p4h">
+        <label for="huey">Past 4 Hours</label>
+        <input type="radio" id="p12h" name="p12h" value="p12h">
+        <label for="dewey">Past 12 Hours</label>
+        <input type="radio" id="p1d" name="p1d" value="p1d">
+        <label for="louie">Past 1 Day</label>
+        <input type="radio" id="p3d" name="p3d" value="p3d">
+        <label for="huey">Past 3 Days</label>
+        <input type="radio" id="p7d" name="p7d" value="p7d">
+        <label for="huey">Past 7 Days</label>
+    </div>
+
     <div id="chartContainer" style="height: 400px; width: 100%;"></div>
 </body>
 </html>
